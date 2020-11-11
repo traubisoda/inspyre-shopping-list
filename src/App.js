@@ -1,5 +1,3 @@
-import './assets/main.css';
-import './App.css';
 import { Back, Cart, Checkmark, Delete } from './components/icons';
 
 function App() {
