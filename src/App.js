@@ -1,17 +1,25 @@
-import { Back, Cart, Checkmark, Delete } from './components/icons';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Header from './components/Header';
+import List from './pages/List';
+import Details from './pages/Details';
 
 function App() {
   return (
-    <div className="font-body bg-gray-medium">
-      <h1 className="text-4xl font-bold text-blue-700 font-display">
-        TAILWIND BABY
-      </h1>
-      <p>Mic check...</p>
-      <Delete />
-      <Back />
-      <Checkmark />
-      <Cart />
-    </div>
+    <Router>
+      <div>
+        <Header />
+        <div className="container mx-auto">
+          <Switch>
+            <Route path="/item/:id">
+              <Details />
+            </Route>
+            <Route path="/">
+              <List />
+            </Route>
+          </Switch>
+        </div>
+      </div>
+    </Router>
   );
 }
 
