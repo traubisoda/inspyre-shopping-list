@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Header from './components/Header';
 import List from './pages/List';
 import Details from './pages/Details';
+import Edit from './pages/Edit';
 
 function App() {
   return (
@@ -10,6 +11,9 @@ function App() {
         <Header />
         <div className="container mx-auto">
           <Switch>
+            <Route path="/edit/:id">
+              <Edit />
+            </Route>
             <Route path="/item/:id">
               <Details />
             </Route>

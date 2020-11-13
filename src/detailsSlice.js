@@ -6,11 +6,13 @@ const initialState = {
   item: null,
 };
 
-export const fetchItemById = createAsyncThunk('details/fetch', async (id) => {
-  const response = await apiClient.get(`/items/${id}`);
+export const getItemById = async (itemId) => {
+  const response = await apiClient.getItemById(itemId);
 
   return response.data.data;
-});
+};
+
+export const fetchItemById = createAsyncThunk('details/fetch', getItemById);
 
 const detailsSlice = createSlice({
   name: 'details',

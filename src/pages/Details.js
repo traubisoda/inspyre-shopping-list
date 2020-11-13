@@ -16,7 +16,7 @@ const Details = () => {
 
   useEffect(() => {
     dispatch(fetchItemById(id));
-  }, []);
+  }, [id, dispatch]);
 
   if (status === 'loading') {
     return <div>Loading...</div>;

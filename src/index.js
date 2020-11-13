@@ -5,7 +5,6 @@ import App from './App';
 import store from './store';
 import './assets/main.css';
 import reportWebVitals from './reportWebVitals';
-import { fetchShoppingList } from './shoppingListSlice';
 
 ReactDOM.render(
   <React.StrictMode>

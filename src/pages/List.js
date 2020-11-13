@@ -16,7 +16,7 @@ const List = () => {
     if (items.length === 0) {
       dispatch(fetchShoppingList());
     }
-  }, []);
+  }, [items, dispatch]);
 
   if (status === 'loading') {
     return <div>Loading...</div>;

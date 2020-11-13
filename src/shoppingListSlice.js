@@ -1,8 +1,4 @@
-import {
-  createSlice,
-  createSelector,
-  createAsyncThunk,
-} from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import apiClient from './apiClient';
 
 const initialState = {
@@ -13,7 +9,7 @@ const initialState = {
 export const fetchShoppingList = createAsyncThunk(
   'shoppingList/fetchShoppingList',
   async () => {
-    const response = await apiClient.get('/items');
+    const response = await apiClient.getItems();
 
     return response.data.data;
   }
@@ -22,7 +18,7 @@ export const fetchShoppingList = createAsyncThunk(
 export const removeItemById = createAsyncThunk(
   'shoppingList/removeItemById',
   async (id) => {
-    await apiClient.delete(`/items/${id}`);
+    await apiClient.deleteItemById(id);
 
     return { id };
   }

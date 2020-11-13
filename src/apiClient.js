@@ -5,4 +5,12 @@ const client = axios.create({
   headers: { 'X-Requested-With': 'XMLHttpRequest' },
 });
 
-export default client;
+const methods = {
+  getItems: () => client.get('/items'),
+  getItemById: (id) => client.get(`/items/${id}`),
+  deleteItemById: (id) => client.delete(`/items/${id}`),
+  updateItemById: (id, data) => client.patch(`/items/${id}`, data),
+  getUsers: () => client.get('/users'),
+};
+
+export default methods;
