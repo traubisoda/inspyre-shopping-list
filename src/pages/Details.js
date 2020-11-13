@@ -1,21 +1,26 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import PageHead from '../components/PageHead';
 import ItemDetails from '../components/ItemDetails';
-import apiClient from '../apiClient';
+import { fetchItemById } from '../detailsSlice';
+
+const getItem = (state) => state.details.item;
+const getStatus = (state) => state.details.status;
 
 const Details = () => {
   const { id } = useParams();
-  const [item, setItem] = useState();
+  const dispatch = useDispatch();
+  const item = useSelector(getItem);
+  const status = useSelector(getStatus);
+
   useEffect(() => {
-    const fetch = async () => {
-      const response = await apiClient.get(`/items/${id}`);
+    dispatch(fetchItemById(id));
+  }, []);
 
-      setItem(response.data.data);
-    };
-
-    fetch();
-  }, [id]);
+  if (status === 'loading') {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
