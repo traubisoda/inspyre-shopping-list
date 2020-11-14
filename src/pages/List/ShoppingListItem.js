@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Delete, Edit } from '../../common/icons';
 import { removeItemById } from './shoppingListSlice';
@@ -21,6 +22,10 @@ const ShoppingListItem = ({ item }) => {
       <Delete className="ml-2 w-6 h-6 cursor-pointer" onClick={onDelete} />
     </div>
   );
+};
+
+ShoppingListItem.propTypes = {
+  item: PropTypes.object.isRequired,
 };
 
 export default ShoppingListItem;

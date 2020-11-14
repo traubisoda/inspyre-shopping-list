@@ -1,4 +1,5 @@
 import Button from './Button';
+import PropTypes from 'prop-types';
 import { Loading } from './icons';
 
 const SaveButton = ({ saving, children, ...props }) => {
@@ -12,6 +13,10 @@ const SaveButton = ({ saving, children, ...props }) => {
   }
 
   return <Button {...props}>{children}</Button>;
+};
+
+SaveButton.propTypes = {
+  saving: PropTypes.bool,
 };
 
 export default SaveButton;

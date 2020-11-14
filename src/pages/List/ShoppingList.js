@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import ShoppingListItem from './ShoppingListItem';
 
 const ShoppingList = ({ items }) => {
@@ -8,6 +9,10 @@ const ShoppingList = ({ items }) => {
       ))}
     </div>
   );
+};
+
+ShoppingList.propTypes = {
+  items: PropTypes.array.isRequired,
 };
 
 export default ShoppingList;

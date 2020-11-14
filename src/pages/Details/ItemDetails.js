@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const ItemDetails = ({ item }) => (
   <div className="bg-white border border-gray-light shadow-lg p-4">
     <p className="text-3xl mb-3">{item.name}</p>
@@ -22,5 +24,9 @@ const ItemDetails = ({ item }) => (
     <p>{item.description}</p>
   </div>
 );
+
+ItemDetails.propTypes = {
+  item: PropTypes.object.isRequired,
+};
 
 export default ItemDetails;

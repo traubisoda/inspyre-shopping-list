@@ -12,7 +12,7 @@ const PageHead = ({ title, action, hasBack }) => (
       )}
       {title}
     </h1>
-    {action && <Button>{action.label}</Button>}
+    {action && <Button onClick={action.callback}>{action.label}</Button>}
   </div>
 );
 

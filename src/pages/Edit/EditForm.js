@@ -1,16 +1,17 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { PropTypes } from 'prop-types';
 import Input from '../../common/form/Input';
 import Textarea from '../../common/form/Textarea';
 import SaveButton from '../../common/SaveButton';
 import UserSelectList from '../../common/UserSelectList';
-import Notification from '../../common/Notification';
 import {
   setUpEditForm,
   updateField,
   updateAssignee,
   saveEditForm,
 } from './editSlice';
+import { showNotification } from '../../store';
 
 const getFormState = (state) => ({
   status: state.edit.status,
@@ -44,11 +45,14 @@ const EditForm = ({ itemId }) => {
     dispatch(setUpEditForm(itemId));
   }, [itemId, dispatch]);
 
+  useEffect(() => {
+    if (status === 'success') {
+      dispatch(showNotification('We saved your changes!'));
+    }
+  }, [status, dispatch]);
+
   return (
     <div className="bg-white shadow-lg p-4">
-      {status === 'success' && (
-        <Notification>We've saved your changes!</Notification>
-      )}
       <form onSubmit={save}>
         <Input
           type="text"
@@ -86,6 +90,10 @@ const EditForm = ({ itemId }) => {
       </form>
     </div>
   );
+};
+
+EditForm.propTypes = {
+  itemId: PropTypes.string.isRequired,
 };
 
 export default EditForm;

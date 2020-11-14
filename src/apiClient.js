@@ -10,6 +10,7 @@ const methods = {
   getItemById: (id) => client.get(`/items/${id}`),
   deleteItemById: (id) => client.delete(`/items/${id}`),
   updateItemById: (id, data) => client.patch(`/items/${id}`, data),
+  createItem: (data) => client.post('/items', data),
   getUsers: () => client.get('/users'),
 };
 

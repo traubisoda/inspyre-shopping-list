@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const UserSelectList = ({ users, selectedUserId, selectUser }) => (
   <div className="my-2">
     {users.map((user) => (
@@ -18,5 +20,11 @@ const UserSelectList = ({ users, selectedUserId, selectUser }) => (
     ))}
   </div>
 );
+
+UserSelectList.propTypes = {
+  users: PropTypes.array.isRequired,
+  selectedUserId: PropTypes.string,
+  selectUser: PropTypes.func.isRequired,
+};
 
 export default UserSelectList;
