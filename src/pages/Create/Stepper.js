@@ -7,6 +7,7 @@ import { showNotification } from '../../store';
 import StepIndicator from './StepIndicator';
 import Button from '../../common/Button';
 import SaveButton from '../../common/SaveButton';
+import { animated, useTransition } from 'react-spring';
 
 const getSaving = (state) => state.newItem.status === 'saving';
 const getSavedItemId = (state) => state.newItem.savedItemId;
@@ -35,6 +36,12 @@ const Stepper = ({ steps }) => {
     }
   }, [savedItemId, dispatch, router]);
 
+  const transition = useTransition(step, (i) => i, {
+    from: { opacity: 0, transform: 'translate3d(150%, 0, 0)' },
+    enter: { opacity: 1, transform: 'translate3d(0, 0, 0)' },
+    leave: { opacity: 0, transform: 'translate3d(-150%, 0, 0)' },
+  });
+
   return (
     <div className="flex flex-col items-center">
       <div className="flex justify-center items-center">
@@ -47,21 +54,29 @@ const Stepper = ({ steps }) => {
           />
         ))}
       </div>
-      <div className="w-5/12 bg-white shadow-lg p-4 mt-5">
-        {steps[step].component}
-        {isLastStep ? (
-          <SaveButton
-            extraClasses="w-full mt-6"
-            onClick={save}
-            saving={isSaving}
+      <div className="w-5/12 mt-5 relative">
+        {transition.map(({ item: index, props, key }) => (
+          <animated.div
+            style={props}
+            key={key}
+            className="w-full bg-white shadow-lg p-4 absolute"
           >
-            Submit
-          </SaveButton>
-        ) : (
-          <Button extraClasses="w-full mt-6 " onClick={next}>
-            Next
-          </Button>
-        )}
+            {steps[index].component}
+            {isLastStep ? (
+              <SaveButton
+                extraClasses="w-full mt-6"
+                onClick={save}
+                saving={isSaving}
+              >
+                Submit
+              </SaveButton>
+            ) : (
+              <Button extraClasses="w-full mt-6 " onClick={next}>
+                Next
+              </Button>
+            )}
+          </animated.div>
+        ))}
       </div>
     </div>
   );

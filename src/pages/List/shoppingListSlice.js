@@ -3,6 +3,7 @@ import apiClient from '../../apiClient';
 
 const initialState = {
   status: 'uninitialized',
+  deletingItemId: null,
   items: [],
 };
 
@@ -27,6 +28,16 @@ export const removeItemById = createAsyncThunk(
 const shoppingListSlice = createSlice({
   name: 'shoppingList',
   initialState,
+  reducers: {
+    selectItemToDelete(state, action) {
+      state.deletingItemId = action.payload;
+      state.status = 'deleting';
+    },
+    cancelDelete(state) {
+      state.status = 'idle';
+      state.deletingItemId = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchShoppingList.pending, (state) => {
@@ -49,11 +60,14 @@ const shoppingListSlice = createSlice({
           (item) => item.id !== action.payload.id
         );
         state.status = 'idle';
+        state.deletingItemId = null;
       })
       .addCase(removeItemById.rejected, (state) => {
         state.status = 'idle';
       });
   },
 });
+
+export const { selectItemToDelete, cancelDelete } = shoppingListSlice.actions;
 
 export default shoppingListSlice.reducer;

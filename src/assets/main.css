@@ -18626,6 +18626,14 @@ video {
   animation: bounce 1s infinite;
 }
 
+.switch-wrapper {
+  position: relative;
+}
+
+.switch-wrapper > div {
+  position: absolute;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;

@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Delete, Edit } from '../../common/icons';
-import { removeItemById } from './shoppingListSlice';
+import { selectItemToDelete } from './shoppingListSlice';
 import { useDispatch } from 'react-redux';
 
 const ShoppingListItem = ({ item }) => {
   const dispatch = useDispatch();
-  const onDelete = () => dispatch(removeItemById(item.id));
+  const onDelete = () => dispatch(selectItemToDelete(item.id));
 
   return (
     <div className="bg-white shadow-lg mb-3 p-5 flex items-center justify-between border border-gray-light">
