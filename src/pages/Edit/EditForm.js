@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import Input from '../../common/form/Input';
+import DatePicker from '../../common/form/DatePicker';
 import Textarea from '../../common/form/Textarea';
 import SaveButton from '../../common/SaveButton';
 import UserSelectList from '../../common/UserSelectList';
@@ -33,6 +34,9 @@ const EditForm = ({ itemId }) => {
     e.preventDefault();
     dispatch(updateField({ value: e.target.value, name: e.target.name }));
   };
+
+  const changeDate = (_, value) =>
+    dispatch(updateField({ name: 'dueDate', value }));
 
   const changeAssignee = (userId) => dispatch(updateAssignee(userId));
 
@@ -70,14 +74,13 @@ const EditForm = ({ itemId }) => {
           rows="10"
           onChange={onChange}
         />
-        <Input
-          type="date"
-          name="dueDate"
-          id="due"
+        <DatePicker
           label="Due date"
           value={dueDate}
-          onChange={onChange}
+          onChange={changeDate}
+          options={{ dateFormat: 'Y-m-d' }}
         />
+
         <UserSelectList
           users={users}
           selectedUserId={assigneeId}
