@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { Back } from '../components/icons';
+import { Back } from './icons';
+import Button from './Button';
 
 const PageHead = ({ title, action, hasBack }) => (
   <div className="flex items-center justify-between my-3">
@@ -11,11 +12,7 @@ const PageHead = ({ title, action, hasBack }) => (
       )}
       {title}
     </h1>
-    {action && (
-      <button className="bg-primary text-white px-8 py-3 shadow-lg">
-        {action.label}
-      </button>
-    )}
+    {action && <Button>{action.label}</Button>}
   </div>
 );
 

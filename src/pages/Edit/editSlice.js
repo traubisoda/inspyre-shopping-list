@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, createAction } from '@reduxjs/toolkit';
-import apiClient from './apiClient';
+import apiClient from '../../apiClient';
 
 const initialState = {
   status: 'uninitialized',
@@ -44,7 +44,6 @@ const editSlice = createSlice({
       state[action.payload.name] = action.payload.value;
     },
     updateAssignee(state, action) {
-      console.log(action);
       state.assignedUserId = action.payload;
     },
   },
@@ -69,6 +68,17 @@ const editSlice = createSlice({
       })
       .addCase(setUpEditForm.rejected, (state) => {
         state.status = 'idle';
+      });
+
+    builder
+      .addCase(saveEditForm.pending, (state) => {
+        state.status = 'saving';
+      })
+      .addCase(saveEditForm.fulfilled, (state) => {
+        state.status = 'success';
+      })
+      .addCase(saveEditForm.rejected, (state) => {
+        state.status = 'error';
       });
   },
 });

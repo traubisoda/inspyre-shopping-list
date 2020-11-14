@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Header from './components/Header';
-import List from './pages/List';
-import Details from './pages/Details';
-import Edit from './pages/Edit';
+import Header from './common/Header';
+import List from './pages/List/List';
+import Details from './pages/Details/Details';
+import Edit from './pages/Edit/Edit';
 
 function App() {
   return (

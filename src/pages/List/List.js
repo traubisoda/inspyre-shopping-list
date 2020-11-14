@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import PageHead from '../components/PageHead';
-import ShoppingList from '../components/list/ShoppingList';
-import { fetchShoppingList } from '../shoppingListSlice';
+import PageHead from '../../common/PageHead';
+import ShoppingList from './ShoppingList';
+import { fetchShoppingList } from './shoppingListSlice';
 
 const selectItems = (state) => state.shoppingList.items;
 const selectStatus = (state) => state.shoppingList.status;

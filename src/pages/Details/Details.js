@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import PageHead from '../components/PageHead';
-import ItemDetails from '../components/ItemDetails';
-import { fetchItemById } from '../detailsSlice';
+import ItemDetails from './ItemDetails';
+import { fetchItemById } from './detailsSlice';
+import PageHead from '../../common/PageHead';
 
 const getItem = (state) => state.details.item;
 const getStatus = (state) => state.details.status;
