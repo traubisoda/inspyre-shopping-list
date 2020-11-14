@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, createAction } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import apiClient from '../../apiClient';
 
 const initialState = {
@@ -23,7 +23,7 @@ export const setUpEditForm = createAsyncThunk('edit/setUpFrom', async (id) => {
 
 export const saveEditForm = createAsyncThunk('edit/saveForm', async function (
   _,
-  { getState }
+  { getState, dispatch }
 ) {
   const state = getState().edit;
   await apiClient.updateItemById(state.id, {
@@ -34,12 +34,19 @@ export const saveEditForm = createAsyncThunk('edit/saveForm', async function (
       id: state.assignedUserId,
     },
   });
+
+  setTimeout(() => {
+    dispatch({ type: 'edit/idle' });
+  }, 3000);
 });
 
 const editSlice = createSlice({
   name: 'edit',
   initialState,
   reducers: {
+    idle(state) {
+      state.status = 'idle';
+    },
     updateField(state, action) {
       state[action.payload.name] = action.payload.value;
     },

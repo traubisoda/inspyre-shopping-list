@@ -11,7 +11,7 @@ const Loading = (props) => (
       cy="50"
       fill="none"
       stroke="currentColor"
-      strokeWidth="20"
+      strokeWidth="14"
       r="35"
       strokeDasharray="164.93361431346415 56.97787143782138"
     >

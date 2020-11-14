@@ -4,6 +4,7 @@ import Input from '../../common/form/Input';
 import Textarea from '../../common/form/Textarea';
 import SaveButton from '../../common/SaveButton';
 import UserSelectList from '../../common/UserSelectList';
+import Notification from '../../common/Notification';
 import {
   setUpEditForm,
   updateField,
@@ -46,9 +47,7 @@ const EditForm = ({ itemId }) => {
   return (
     <div className="bg-white shadow-lg p-4">
       {status === 'success' && (
-        <div className="bg-green-600 text-white font-bold p-2 text-center mb-3">
-          We've saved your changes!
-        </div>
+        <Notification>We've saved your changes!</Notification>
       )}
       <form onSubmit={save}>
         <Input
