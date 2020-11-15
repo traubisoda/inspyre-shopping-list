@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const client = axios.create({
-  baseURL: 'https://frontend-assessment-api.herokuapp.com/',
+  baseURL: process.env.REACT_APP_API_URL,
 });
 
 const methods = {
