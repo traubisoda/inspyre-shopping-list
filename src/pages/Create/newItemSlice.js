@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import apiClient from '../../apiClient';
+import { fetchShoppingList } from '../List/shoppingListSlice';
 
 const initialState = {
   status: 'idle',
@@ -27,6 +28,8 @@ export const saveNewItem = createAsyncThunk(
       dueDate,
       assignedTo: { id: assignedUserId },
     });
+
+    dispatch(fetchShoppingList());
 
     return response.data.data;
   }

@@ -19,14 +19,15 @@ const Create = () => {
       <PageHead title="New item" hasBack={true} />
       <Stepper
         steps={[
-          { key: 'step-1', name: 'What is it?', component: <StepOne /> },
           {
-            key: 'step-2',
+            name: 'What is it?',
+            component: <StepOne />,
+          },
+          {
             name: 'When is the due date?',
             component: <StepTwo />,
           },
           {
-            key: 'step-3',
             name: 'Who should buy it?',
             component: <StepThree />,
           },

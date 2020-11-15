@@ -23,7 +23,7 @@ const Stepper = ({ steps }) => {
   const save = () => dispatch(saveNewItem());
   const getStatus = (stepIndex) => {
     if (stepIndex === step) return 'active';
-    else if (stepIndex < step) return 'done';
+    if (stepIndex < step) return 'done';
 
     return 'pending';
   };
@@ -71,7 +71,7 @@ const Stepper = ({ steps }) => {
                 Submit
               </SaveButton>
             ) : (
-              <Button extraClasses="w-full mt-6 " onClick={next}>
+              <Button extraClasses="w-full mt-6" onClick={next}>
                 Next
               </Button>
             )}

@@ -9,6 +9,7 @@ const StepTwo = () => {
   const value = useSelector(getDueDate);
   const onChange = (_, value) =>
     dispatch(updateField({ name: 'dueDate', value }));
+
   return (
     <div>
       <DatePicker
